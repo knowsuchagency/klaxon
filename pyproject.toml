@@ -1,11 +1,17 @@
 [tool.poetry]
 name = "klaxon"
-version = "0.1.3"
+version = "0.1.4"
 description = "Use osascript to send notifications."
 authors = ["Stephan Fitzpatrick <knowsuchagency@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/knowsuchagency/klaxon"
+homepage = "https://pypi.org/project/klaxon/"
+keywords = [
+    "mac",
+    "notifications",
+    "productivity"
+]
 
 [tool.poetry.scripts]
 klaxon = 'klaxon:main'
