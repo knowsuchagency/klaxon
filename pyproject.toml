@@ -3,6 +3,7 @@ name = "klaxon"
 version = "0.1.0"
 description = "Use osascript to send notifications."
 authors = ["Stephan Fitzpatrick <knowsuchagency@gmail.com>"]
+license = "Apache-2.0"
 
 [tool.poetry.scripts]
 klaxon = 'klaxon:main'
