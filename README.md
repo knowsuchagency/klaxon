@@ -37,9 +37,13 @@ echo "this is the message body" | klaxon --
 ```python
 from klaxon import klaxon, klaxonify
 
-# send a blank notification
+# send a notification
 
-klaxon()
+klaxon(
+    title='hello, klaxon',
+    subtitle='hola',
+    message='it me'
+)
 
 # we can decorate our functions to have
 # them send notifications at termination
