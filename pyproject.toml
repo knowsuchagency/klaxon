@@ -5,6 +5,7 @@ description = "Use osascript to send notifications."
 authors = ["Stephan Fitzpatrick <knowsuchagency@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
+repository = "https://github.com/knowsuchagency/klaxon"
 
 [tool.poetry.scripts]
 klaxon = 'klaxon:main'

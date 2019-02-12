@@ -1,4 +1,4 @@
-# Klaxon
+# klaxon
 
 Send Mac OS notifications from the terminal or Python programs.
 
@@ -7,6 +7,17 @@ for some long-running background task.
 
 This is similar to the [terminal-notifier ruby gem][terminal-notifier],
 but posix-compliant and with fewer features (PR's welcome).
+
+## Security Notice
+
+
+**DO NOT** send untrusted input to through klaxon. 
+
+Someone could use a shell escape sequence to execute arbitrary code
+on your machine as klaxon functions by invoking [osascript]
+via a subprocess call.
+
+You have been warned.
 
 ## Usage
 
@@ -55,3 +66,4 @@ pip install klaxon
 
 [terminal-notifier]: https://github.com/julienXX/terminal-notifier
 [pipx]: https://github.com/pipxproject/pipx
+[osascript]: https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel/115373#115373
