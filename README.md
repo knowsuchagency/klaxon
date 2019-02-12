@@ -11,7 +11,7 @@ but posix-compliant and with fewer features (PR's welcome).
 ## Security Notice
 
 
-**DO NOT** send untrusted input to through klaxon. 
+**DO NOT** send untrusted input through klaxon. 
 
 Someone could use a shell escape sequence to execute arbitrary code
 on your machine as klaxon functions by invoking [osascript]
