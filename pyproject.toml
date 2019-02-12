@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "klaxon"
-version = "0.1.2"
+version = "0.1.3"
 description = "Use osascript to send notifications."
 authors = ["Stephan Fitzpatrick <knowsuchagency@gmail.com>"]
 license = "Apache-2.0"
@@ -14,7 +14,7 @@ klaxon = 'klaxon:main'
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
-#pytest = "^3.0"
+pytest = "^3.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
