@@ -8,16 +8,15 @@ for some long-running background task.
 This is similar to the [terminal-notifier ruby gem][terminal-notifier],
 but posix-compliant and with fewer features (PR's welcome).
 
-## Security Notice
-
-
-**DO NOT** send untrusted input through klaxon. 
-
-Someone could use a shell escape sequence to execute arbitrary code
-on your machine as klaxon functions by invoking [osascript]
-via a subprocess call.
-
-You have been warned.
+## Installation
+For command-line use, the recommended method of installation is through [pipx].
+```bash
+pipx install klaxon
+```
+Naturally, klaxon can also be pip-installed.
+```bash
+pip install klaxon
+```
 
 ## Usage
 
@@ -58,15 +57,16 @@ def foo():
 
 ```
 
-## Installation
-For command-line use, the recommended method of installation is through [pipx].
-```bash
-pipx install klaxon
-```
-Naturally, klaxon can also be pip-installed.
-```bash
-pip install klaxon
-```
+## Security Notice
+
+
+**DO NOT** send untrusted input through klaxon. 
+
+Someone could use a shell escape sequence to execute arbitrary code
+on your machine as klaxon functions by invoking [osascript]
+via a subprocess call.
+
+You have been warned.
 
 [terminal-notifier]: https://github.com/julienXX/terminal-notifier
 [pipx]: https://github.com/pipxproject/pipx
