@@ -2,6 +2,7 @@
 from functools import partial, wraps
 import subprocess as sp
 import argparse
+import logging
 import shlex
 import sys
 
@@ -12,6 +13,10 @@ def klaxon(message: str= '', title="Klaxon", subtitle="", sound=""):
 
     see https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel/115373#115373
     """
+    if not sys.platform == 'darwin':
+        logging.error('klaxon only works on Mac OS')
+        return
+
     command = f"""osascript -e 'display notification "{message}" with title "{title}" subtitle "{subtitle}" sound name "{sound}"'"""
     sp.run(shlex.split(command))
 
