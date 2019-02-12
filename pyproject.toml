@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "klaxon"
+version = "0.1.0"
+description = "Use osascript to send notifications."
+authors = ["Stephan Fitzpatrick <knowsuchagency@gmail.com>"]
+
+[tool.poetry.scripts]
+klaxon = 'klaxon:main'
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+#pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
