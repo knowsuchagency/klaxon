@@ -5,7 +5,7 @@ Send Mac OS notifications from the terminal or Python programs.
 This is useful for when you want a push notification 
 for some long-running background task.
 
-This is similar to the [terminal-notifier ruby gem][terminal-notifier],
+Similar to the [terminal-notifier ruby gem][terminal-notifier],
 but posix-compliant and with fewer features (PR's welcome).
 
 ## Installation
