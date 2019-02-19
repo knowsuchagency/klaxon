@@ -57,17 +57,6 @@ def foo():
 
 ```
 
-## Security Notice
-
-
-**DO NOT** send untrusted input through klaxon. 
-
-Someone could use a shell escape sequence to execute arbitrary code
-on your machine as klaxon functions by invoking [osascript]
-via a subprocess call.
-
-You have been warned.
-
 [terminal-notifier]: https://github.com/julienXX/terminal-notifier
 [pipx]: https://github.com/pipxproject/pipx
 [osascript]: https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel/115373#115373

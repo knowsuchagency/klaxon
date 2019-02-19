@@ -17,6 +17,7 @@ def klaxon(message: str= '', title="Klaxon", subtitle="", sound=""):
         logging.error('klaxon only works on Mac OS')
         return
 
+    message, title, subtitle, sound = map(shlex.quote, (message, title, subtitle, sound))
     command = f"""osascript -e 'display notification "{message}" with title "{title}" subtitle "{subtitle}" sound name "{sound}"'"""
     sp.run(shlex.split(command))
 
