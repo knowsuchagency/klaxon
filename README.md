@@ -51,6 +51,7 @@ klaxon(
 def hello(name='world'):
     return f'hello, {name}'
 
+
 @klaxonify(title='oh hai', output_as_message=True)
 def foo():
     return "This will be the message body."

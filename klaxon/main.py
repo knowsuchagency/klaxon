@@ -56,7 +56,9 @@ def klaxonify(
         def inner(*args, **kwargs):
             result = function(*args, **kwargs)
             klaxon(
-                subtitle=subtitle if subtitle is not None else function.__name__,
+                subtitle=subtitle
+                if subtitle is not None
+                else function.__name__,
                 message=message if not output_as_message else result,
                 title=title,
                 sound=sound,
@@ -74,12 +76,19 @@ def klaxonify(
 def main():
     """Parse arguments from command line and pass to notify function."""
     parser = argparse.ArgumentParser(
-        prog="klaxon", description="Send Mac OS notifications through osascript."
+        prog="klaxon",
+        description="Send Mac OS notifications through osascript.",
     )
 
-    parser.add_argument("--message", default="", help="The body of the notification")
-    parser.add_argument("--title", default="Klaxon", help="The notification's title")
-    parser.add_argument("--subtitle", default="", help="The notification's subtitle")
+    parser.add_argument(
+        "--message", "-m", default="", help="The body of the notification"
+    )
+    parser.add_argument(
+        "--title", "-t", default="Klaxon", help="The notification's title"
+    )
+    parser.add_argument(
+        "--subtitle", "-s", default="", help="The notification's subtitle"
+    )
     parser.add_argument("--sound", help="The sound the notification makes")
 
     read_stdin = sys.argv.pop() if sys.argv[-1].strip() == "--" else None
