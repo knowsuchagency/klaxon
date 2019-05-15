@@ -1,4 +1,4 @@
-__version__ = "0.2.6"
+__version__ = "0.2.7"
 
 from klaxon.configuration import config
 from klaxon.main import klaxon, klaxonify, main
