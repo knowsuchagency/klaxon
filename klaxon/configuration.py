@@ -67,7 +67,8 @@ def get_notifiers_provider_config(message, subtitle, title) -> dict:
             ),
             "title": title,
             "html": True,
-        }
+        },
+        "slack": {"message": message if message else "task complete"},
     }
     return provider_config
 
