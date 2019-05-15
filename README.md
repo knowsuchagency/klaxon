@@ -9,7 +9,7 @@ Similar to the [terminal-notifier ruby gem][terminal-notifier],
 but posix-compliant and able to send notifications via
 the [notifiers][notifiers] library.
 
-![hello-klaxon](https://github.com/knowsuchagency/klaxon/blob/master/static/recording.gif)
+![hello-klaxon](static/recording.gif)
 
 ## Installation
 For command-line use, the recommended method of installation is through [pipx].
