@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
 import argparse
-import logging
 import os
 import shlex
 import subprocess as sp
@@ -10,6 +8,7 @@ from typing import *
 
 from klaxon import config
 from klaxon.configuration import get_notifiers_provider_config
+from klaxon.exceptions import KlaxonExit
 
 ENABLE_PUSH_NOTIFICATIONS = config.get("enable-notifiers", False)
 
@@ -28,8 +27,7 @@ def klaxon(
     see https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel/115373#115373
     """
     if not sys.platform == "darwin":
-        logging.error("klaxon only works on Mac OS")
-        return
+        raise KlaxonExit("klaxon only works on Mac OS")
 
     escaped_message, escaped_title, escaped_subtitle, escaped_sound = [
         shlex.quote(str(e).replace(" ", "-"))
@@ -112,7 +110,7 @@ def _send_push_notifications(
     try:
         import notifiers
     except (ImportError, ModuleNotFoundError):
-        raise SystemExit(
+        raise KlaxonExit(
             os.linesep.join(
                 [
                     "notifiers enabled but not installed",
@@ -122,17 +120,17 @@ def _send_push_notifications(
         )
 
     if "notifiers" not in config:
-        raise SystemExit("notifiers key not found in configuration")
+        raise KlaxonExit("notifiers key not found in configuration")
 
     message = message.strip('"').strip("'")
 
-    provider_config = {"message": message}
-
-    provider_config.update(
+    provider_config = (
         get_notifiers_provider_config(message, subtitle, title)
         if provider_config_factory is None
         else provider_config_factory(message, subtitle, title)
     )
+
+    provider_config = provider_config or {"message": message}
 
     for provider in config["notifiers"]:
         name = provider.pop("name")

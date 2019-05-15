@@ -1,7 +1,7 @@
 # TODO: get my life together
 
-from klaxon import __version__
+from klaxon import *
 
 
-def test_version():
-    assert __version__ == '0.1.13'
+def test():
+    """"""
