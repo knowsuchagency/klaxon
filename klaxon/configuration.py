@@ -58,15 +58,15 @@ def get_notifiers_provider_config(message, subtitle, title) -> dict:
     # use the following provider-specific map for `notify` parameters
     provider_config = {
         "pushover": {
-            # "message": textwrap.dedent(
-            #     f"""
-            #     <i>{subtitle}</i>
-            #
-            #     {message}
-            #     """
-            # ),
+            "message": textwrap.dedent(
+                f"""
+                <i>{subtitle}</i>
+
+                {message}
+                """
+            ),
             "title": title,
-            # "html": True,
+            "html": True,
         }
     }
     return provider_config
