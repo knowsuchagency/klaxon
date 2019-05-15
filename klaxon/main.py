@@ -10,6 +10,8 @@ from klaxon import config
 from klaxon.configuration import get_notifiers_provider_config
 from klaxon.exceptions import KlaxonExit
 
+from notifiers import get_notifier
+
 ENABLE_PUSH_NOTIFICATIONS = config.get("enable-notifiers", False)
 
 
@@ -130,11 +132,17 @@ def _send_push_notifications(
         else provider_config_factory(message, subtitle, title)
     )
 
-    provider_config = provider_config or {"message": message}
-
     for provider in config["notifiers"]:
         name = provider.pop("name")
+
         kwargs = {**provider_config.get(name, {}), **provider}
+
+        if (
+            "message" in get_notifier(name).required["required"]
+            and "message" not in kwargs
+        ):
+            kwargs["message"] = message
+
         notifiers.notify(name, **kwargs)
 
 
