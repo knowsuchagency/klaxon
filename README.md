@@ -86,13 +86,17 @@ For example:
 enable-notifiers = true
 
 [[notifiers]]
+name = 'slack'
+# see https://api.slack.com/incoming-webhooks#getting-started
+webhook_url = {{your webhook url}}
+
+[[notifiers]]
 name = 'pushover'
 user = {{your user token}}
 token = {{your application token}}
 ```
 
-Voila! Now messages sent from klaxon will be pushed to your email, mobile device, slack or any
-other place you configure.
+Voila! Now messages sent from klaxon will be pushed to slack and pushover.
 
 
 [terminal-notifier]: https://github.com/julienXX/terminal-notifier
