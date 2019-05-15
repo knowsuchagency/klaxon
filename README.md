@@ -9,7 +9,7 @@ Similar to the [terminal-notifier ruby gem][terminal-notifier],
 but posix-compliant and able to send notifications via
 the [notifiers][notifiers] library.
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/2pp5ghM"><a href="//imgur.com/2pp5ghM">hello klaxon</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+![hello klaxon](static/recording.gif)
 
 ## Installation
 For command-line use, the recommended method of installation is through [pipx].
