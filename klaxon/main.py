@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 import shlex
 import subprocess as sp
@@ -6,11 +7,11 @@ import sys
 from functools import partial, wraps
 from typing import *
 
+from notifiers import get_notifier
+
 from klaxon import config
 from klaxon.configuration import get_notifiers_provider_config
 from klaxon.exceptions import KlaxonExit
-
-from notifiers import get_notifier
 
 ENABLE_PUSH_NOTIFICATIONS = config.get("enable-notifiers", False)
 
@@ -28,19 +29,22 @@ def klaxon(
 
     see https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel/115373#115373
     """
-    if not sys.platform == "darwin":
-        raise KlaxonExit("klaxon only works on Mac OS")
 
     escaped_message, escaped_title, escaped_subtitle, escaped_sound = [
         shlex.quote(str(e).replace(" ", "-"))
         for e in (message, title, subtitle, sound)
     ]
 
-    sp.run(
-        shlex.split(
-            f"""osascript -e 'display notification "{escaped_message}" with title "{escaped_title}" subtitle "{escaped_subtitle}" sound name "{escaped_sound}"'"""
+    if sys.platform == "darwin":
+        sp.run(
+            shlex.split(
+                f"""osascript -e 'display notification "{escaped_message}" with title "{escaped_title}" subtitle "{escaped_subtitle}" sound name "{escaped_sound}"'"""
+            )
         )
-    )
+    else:
+        logging.warning(
+            "osascript notifications from klaxon only work on Mac OS"
+        )
 
     if push:
         _send_push_notifications(
