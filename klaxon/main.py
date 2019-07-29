@@ -137,7 +137,7 @@ def _send_push_notifications(
     )
 
     for provider in config["notifiers"]:
-        name = provider.pop("name")
+        name = provider["name"]
 
         kwargs = {**provider_config.get(name, {}), **provider}
 
