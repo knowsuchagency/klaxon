@@ -139,7 +139,10 @@ def _send_push_notifications(
     for provider in config["notifiers"]:
         name = provider["name"]
 
-        kwargs = {**provider_config.get(name, {}), **provider}
+        kwargs = {
+            **provider_config.get(name, {}),
+            **{k: v for k, v in provider.items() if k != "name"},
+        }
 
         if (
             "message" in get_notifier(name).required["required"]
