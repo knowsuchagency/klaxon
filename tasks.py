@@ -8,9 +8,22 @@ def black(c):
     c.run("black klaxon/ tests/ tasks.py")
 
 
-@task(aliases=["test", "tests"])
+@task(aliases=["check-black"])
+def check_formatting(c):
+    """Check that files conform to black standards."""
+    c.run("black --check klaxon/ tests/ tasks.py")
+
+
+@task
+def mypy(c):
+    """Type-check code."""
+    c.run("mypy klaxon/ tests/ tasks.py --ignore-missing-imports")
+
+
+@task
 def unit_tests(c):
-    c.run("pytest --black --mypy tests")
+
+    c.run("pytest tests/")
 
 
 @task

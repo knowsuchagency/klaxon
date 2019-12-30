@@ -149,7 +149,7 @@ def _send_push_notifications(
 def main():
     """Parse arguments from command line and pass to notify function."""
     parser = argparse.ArgumentParser(
-        prog="klaxon", description="Send Mac OS notifications through osascript.",
+        prog="klaxon", description="Send Mac OS notifications through osascript."
     )
 
     parser.add_argument(

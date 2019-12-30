@@ -15,5 +15,9 @@ jobs:
           pip install -U pip
           pip install poetry
           poetry install
-      - name: run test suite
-        run: poetry run inv tests
+      - name: check black formatting
+        run: poetry run inv check-black
+      - name: mypy
+        run: poetry run inv mypy
+      - name: unit tests
+        run: poetry run inv unit-tests
