@@ -1,0 +1,22 @@
+name: black
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  POETRY_VIRTUALENVS_CREATE: false
+
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - uses: knowsuchagency/poetry-install@v1
+      - name: check black formatting
+        run: inv check-black
