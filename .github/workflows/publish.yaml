@@ -7,8 +7,8 @@ env:
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
 jobs:
-  runs-on: ubuntu-latest
   publish:
+    runs-on: ubuntu-latest
     needs: test
     steps:
       - name: echo
