@@ -32,6 +32,7 @@ invoke = "^1.2"
 mypy = "0.*"
 black = "^19.3b0"
 qypi = "^0.5.0"
+pre-commit = "^1.20.0"
 
 
 [tool.black]
@@ -41,4 +42,3 @@ max-line-length = 79
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-

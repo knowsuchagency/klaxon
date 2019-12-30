@@ -5,7 +5,11 @@ import toml
 from invoke import task
 
 
-# test
+@task
+def install_hooks(c):
+    """Install git hooks."""
+    c.run("pre-commit install")
+    c.run("pre-commit install -t pre-push")
 
 
 @task
