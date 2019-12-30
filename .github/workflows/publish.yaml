@@ -1,0 +1,14 @@
+name: publish
+
+on: push
+
+env:
+  PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+
+jobs:
+  publish:
+    needs: test
+    steps:
+      name: echo
+      run: poetry run inv echo
