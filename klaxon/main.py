@@ -103,7 +103,7 @@ def _send_push_notifications(
     title,
     subtitle,
     message,
-    provider_config_factory: Callable[[str, str, str], dict] = None,
+    provider_config_factory: Optional[Callable[[str, str, str], dict]] = None,
 ):
     """Send push notifications."""
     try:
