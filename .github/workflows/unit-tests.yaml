@@ -12,6 +12,11 @@ env:
   POETRY_VIRTUALENVS_CREATE: false
 
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo hello world
+        run: echo "hello world"
   unit-tests:
     needs:
       - black
