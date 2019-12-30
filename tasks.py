@@ -3,6 +3,12 @@ import os
 from invoke import task
 
 
+@task
+def echo(c, word="hello"):
+    """Here for testing."""
+    c.run(f"echo {word}")
+
+
 @task(aliases=["format"])
 def black(c):
     """Format modules using black."""
