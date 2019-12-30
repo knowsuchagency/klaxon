@@ -12,12 +12,6 @@ def install_hooks(c):
     c.run("pre-commit install -t pre-push")
 
 
-@task
-def echo(c, word="hello"):
-    """Here for testing."""
-    c.run(f"echo {word}")
-
-
 @task(aliases=["format"])
 def black(c):
     """Format modules using black."""
