@@ -7,8 +7,9 @@ env:
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
 jobs:
+  runs-on: ubuntu-latest
   publish:
     needs: test
     steps:
-      name: echo
-      run: poetry run inv echo
+      - name: echo
+        run: poetry run inv echo
