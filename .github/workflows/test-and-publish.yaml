@@ -31,7 +31,7 @@ jobs:
       - name: unit tests
         run: poetry run inv unit-tests
   publish:
-    if: github.event_name != "pull_request"
+    if: github.event_name != 'pull_request'
     needs: test
     runs-on: ubuntu-latest
     steps:
