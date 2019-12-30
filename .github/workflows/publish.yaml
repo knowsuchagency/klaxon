@@ -14,10 +14,6 @@ env:
 jobs:
   publish:
     if: github.event_name != 'pull_request'
-    needs:
-      - black
-      - mypy
-      - unit-tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-python@v1

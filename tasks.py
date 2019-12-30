@@ -36,7 +36,7 @@ def unit_tests(c):
     c.run("pytest tests/")
 
 
-@task
+@task(check_formatting, mypy, unit_tests)
 def publish(c, username=None, password=None):
     """Publish to pypi."""
 
