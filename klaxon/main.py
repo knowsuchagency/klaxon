@@ -1,7 +1,6 @@
 import argparse
 import logging
 import os
-import shlex
 import subprocess as sp
 import sys
 from functools import partial, wraps
@@ -18,7 +17,7 @@ def klaxon(
     message="",
     title="Klaxon",
     subtitle="",
-    sound="",
+    sound="bell",
     push=ENABLE_PUSH_NOTIFICATIONS,
     provider_config_factory=None,
 ):
@@ -28,16 +27,28 @@ def klaxon(
     see https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel/115373#115373
     """
 
-    escaped_message, escaped_title, escaped_subtitle, escaped_sound = [
-        shlex.quote(str(e).replace(" ", " ")) for e in (message, title, subtitle, sound)
-    ]
-
     if sys.platform == "darwin":
-        sp.run(
-            shlex.split(
-                f"""osascript -e 'display notification "{escaped_message}" with title "{escaped_title}" subtitle "{escaped_subtitle}" sound name "{escaped_sound}"'"""
-            )
+
+        applescript = f'display notification "{message}" with title "{title}"'
+
+        if subtitle:
+            applescript += f' subtitle "{subtitle}"'
+
+        if sound:
+            applescript += f' sound name "{sound}"'
+
+        process = sp.Popen(
+            ["osascript", "-"], stdin=sp.PIPE, stderr=sp.PIPE, stdout=sp.PIPE
         )
+
+        logging.debug(applescript)
+
+        stdout, stderr = process.communicate(applescript.encode())
+
+        if process.returncode != 0:
+            logging.error(stdout.decode())
+            raise SystemExit(stdout.decode())
+
     else:
         logging.warning("osascript notifications from klaxon only work on Mac OS")
 
@@ -54,8 +65,8 @@ def klaxonify(
     func=None,
     title="Klaxon",
     message="",
-    subtitle=None,
-    sound="",
+    subtitle="",
+    sound="bell",
     output_as_message=False,
     push=ENABLE_PUSH_NOTIFICATIONS,
     provider_config_factory=None,
@@ -149,7 +160,7 @@ def _send_push_notifications(
 def main():
     """Parse arguments from command line and pass to notify function."""
     parser = argparse.ArgumentParser(
-        prog="klaxon", description="Send Mac OS notifications through osascript."
+        prog="klaxon", description="Send Mac OS notifications through osascript.",
     )
 
     parser.add_argument(
@@ -164,7 +175,9 @@ def main():
         "--subtitle", "-s", default="", help="The notification's subtitle"
     )
 
-    parser.add_argument("--sound", help="The sound the notification makes")
+    parser.add_argument(
+        "--sound", default="bell", help="The sound the notification makes"
+    )
 
     parser.add_argument(
         "--no-push",
