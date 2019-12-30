@@ -24,3 +24,21 @@ jobs:
         run: poetry run inv mypy
       - name: unit tests
         run: poetry run inv unit-tests
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - name: install package
+        run: |
+          pip install -U pip
+          pip install poetry
+          poetry install
+      - name: publish
+        env:
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: poetry run inv publish
