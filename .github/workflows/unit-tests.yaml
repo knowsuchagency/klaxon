@@ -1,0 +1,25 @@
+name: unit tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  POETRY_VIRTUALENVS_CREATE: false
+
+jobs:
+  unit-tests:
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - uses: knowsuchagency/poetry-install@v1
+      - name: unit tests
+        run: inv unit-tests

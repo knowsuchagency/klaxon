@@ -1,10 +1,12 @@
 # klaxon
 
-![](https://github.com/knowsuchagency/klaxon/workflows/test%20and%20publish/badge.svg)
+![](https://github.com/knowsuchagency/klaxon/workflows/black/badge.svg)
+![](https://github.com/knowsuchagency/klaxon/workflows/mypy/badge.svg)
+![](https://github.com/knowsuchagency/klaxon/workflows/unit%20tests/badge.svg)
 
 Send Mac OS (or [notifiers][notifiers]) notifications from the terminal or Python programs.
 
-This is especially useful for when you want a push notification 
+This is especially useful for when you want a push notification
 for some long-running background task.
 
 Similar to the [terminal-notifier ruby gem][terminal-notifier],
@@ -63,7 +65,7 @@ def foo():
 
 ```
 
-## Non-MacOS Notifications 
+## Non-MacOS Notifications
 
 ### i.e. mobile | email | slack
 

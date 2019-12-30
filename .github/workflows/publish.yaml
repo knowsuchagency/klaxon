@@ -1,0 +1,28 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  POETRY_VIRTUALENVS_CREATE: false
+
+jobs:
+  publish:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - uses: actions/checkout@v1
+      - uses: knowsuchagency/poetry-install@v1
+      - name: publish
+        env:
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: inv publish
