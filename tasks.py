@@ -1,9 +1,8 @@
-import os
 import json
-from pprint import pprint
-from invoke import task
+import os
+
 import toml
-from pathlib import Path
+from invoke import task
 
 
 @task
