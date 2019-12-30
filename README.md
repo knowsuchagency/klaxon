@@ -102,6 +102,36 @@ token = {{your application token}}
 
 Voila! Now messages sent from klaxon will be pushed to slack and pushover.
 
+## Development
+
+```bash
+
+git clone git@github.com:knowsuchagency/klaxon.git
+
+cd klaxon
+
+# create a virtualenv and activate it
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+# install poetry and use it to install project dependencies
+
+pip install -U pip
+pip install poetry
+poetry install
+
+# this will install `invoke` which will let you use the tasks defined in `tasks.py`
+
+# install pre-commit hooks
+
+inv install-hooks
+
+# from now on, as you make changes to the project, the pre-commit hooks and
+# github workflows will help make sure code is formatted properly and tests
+# are invoked as you commit, push, and submit pull requests
+```
+
 
 [terminal-notifier]: https://github.com/julienXX/terminal-notifier
 [pipx]: https://github.com/pipxproject/pipx
