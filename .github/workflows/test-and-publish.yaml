@@ -31,6 +31,7 @@ jobs:
       - name: unit tests
         run: poetry run inv unit-tests
   publish:
+    if: github.event_name != pull_request
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -38,10 +39,6 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.6
-      - name: echo event
-        run: echo ${{ github.event }}
-      - name: echo event name
-        run : echo ${{ github.event_name }}
       - name: install package
         run: |
           pip install -U pip
