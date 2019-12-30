@@ -1,5 +1,7 @@
 # klaxon
 
+![](https://github.com/knowsuchagency/klaxon/workflows/test%20and%20publish/badge.svg)
+
 Send Mac OS (or [notifiers][notifiers]) notifications from the terminal or Python programs.
 
 This is especially useful for when you want a push notification 
