@@ -29,8 +29,7 @@ def klaxon(
     """
 
     escaped_message, escaped_title, escaped_subtitle, escaped_sound = [
-        shlex.quote(str(e).replace(" ", "\N{BRAILLE PATTERN BLANK}"))
-        for e in (message, title, subtitle, sound)
+        shlex.quote(str(e).replace(" ", " ")) for e in (message, title, subtitle, sound)
     ]
 
     if sys.platform == "darwin":
