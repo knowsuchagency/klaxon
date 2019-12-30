@@ -12,18 +12,26 @@ env:
   POETRY_VIRTUALENVS_CREATE: false
 
 jobs:
-  lint:
+  black:
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
-    - uses: knowsuchagency/poetry-install@v1
-    - name: check black formatting
-      run: inv check-black
-    - name: mypy
-      run: inv mypy
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - uses: knowsuchagency/poetry-install@v1
+      - name: check black formatting
+        run: inv check-black
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - uses: knowsuchagency/poetry-install@v1
+      - name: mypy
+        run: inv mypy
   unit-tests:
-    needs: lint
+    needs:
+      - black
+      - mypy
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8]
@@ -37,7 +45,8 @@ jobs:
   publish:
     if: github.event_name != 'pull_request'
     needs:
-      - lint
+      - black
+      - mypy
       - unit-tests
     runs-on: ubuntu-latest
     steps:
