@@ -31,6 +31,7 @@ pytest = "^3.0"
 invoke = "^1.2"
 mypy = "0.*"
 black = "^19.3b0"
+qypi = "^0.5.0"
 
 
 [tool.black]

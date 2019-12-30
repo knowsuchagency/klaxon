@@ -1,6 +1,9 @@
 import os
-
+import json
+from pprint import pprint
 from invoke import task
+import toml
+from pathlib import Path
 
 
 @task
@@ -34,8 +37,24 @@ def unit_tests(c):
 
 
 @task
-def publish(c):
+def publish(c, username=None, password=None):
     """Publish to pypi."""
-    username = os.getenv("PYPI_USERNAME")
-    password = os.getenv("PYPI_PASSWORD")
-    c.run(f"poetry publish -u {username} -p '{password}' --build", pty=True)
+
+    username = username or os.getenv("PYPI_USERNAME")
+
+    password = password or os.getenv("PYPI_PASSWORD")
+
+    *_, latest_release = json.loads(c.run("qypi releases klaxon").stdout)[
+        "klaxon"
+    ]
+
+    latest_release_version = latest_release["version"]
+
+    local_version = toml.load("pyproject.toml")["tool"]["poetry"]["version"]
+
+    if local_version == latest_release_version:
+        print("local and release version are identical")
+    else:
+        c.run(
+            f"poetry publish -u {username} -p '{password}' --build", pty=True
+        )
