@@ -17,19 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: install package
-        run: |
-          pip install -U pip
-          pip install poetry
-          poetry install
+      - uses: knowsuchagency/poetry-install@master
       - name: check black formatting
-        run: poetry run inv check-black
+        run: inv check-black
       - name: mypy
-        run: poetry run inv mypy
+        run: inv mypy
       - name: unit tests
-        run: poetry run inv unit-tests
+        run: inv unit-tests
   publish:
     if: github.event_name != 'pull_request'
     needs: test
