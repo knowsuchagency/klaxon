@@ -7,8 +7,6 @@ import sys
 from functools import partial, wraps
 from typing import *
 
-from notifiers import get_notifier
-
 from klaxon import config
 from klaxon.configuration import get_notifiers_provider_config
 from klaxon.exceptions import KlaxonExit
@@ -31,8 +29,7 @@ def klaxon(
     """
 
     escaped_message, escaped_title, escaped_subtitle, escaped_sound = [
-        shlex.quote(str(e).replace(" ", "-"))
-        for e in (message, title, subtitle, sound)
+        shlex.quote(str(e).replace(" ", "-")) for e in (message, title, subtitle, sound)
     ]
 
     if sys.platform == "darwin":
@@ -42,9 +39,7 @@ def klaxon(
             )
         )
     else:
-        logging.warning(
-            "osascript notifications from klaxon only work on Mac OS"
-        )
+        logging.warning("osascript notifications from klaxon only work on Mac OS")
 
     if push:
         _send_push_notifications(
@@ -87,9 +82,7 @@ def klaxonify(
         def inner(*args, **kwargs):
             result = function(*args, **kwargs)
             klaxon(
-                subtitle=subtitle
-                if subtitle is not None
-                else function.__name__,
+                subtitle=subtitle if subtitle is not None else function.__name__,
                 message=message if not output_as_message else result,
                 title=title,
                 sound=sound,
@@ -145,7 +138,7 @@ def _send_push_notifications(
         }
 
         if (
-            "message" in get_notifier(name).required["required"]
+            "message" in notifiers.get_notifier(name).required["required"]
             and "message" not in kwargs
         ):
             kwargs["message"] = message
@@ -156,8 +149,7 @@ def _send_push_notifications(
 def main():
     """Parse arguments from command line and pass to notify function."""
     parser = argparse.ArgumentParser(
-        prog="klaxon",
-        description="Send Mac OS notifications through osascript.",
+        prog="klaxon", description="Send Mac OS notifications through osascript.",
     )
 
     parser.add_argument(

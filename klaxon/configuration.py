@@ -25,9 +25,7 @@ def _get_config() -> D:
 
     if pyproject_toml_path.exists():
         klaxon_options = toml.load(pyproject_toml_path)
-        _recursive_update(
-            result, klaxon_options.get("tool", {}).get("klaxon", {})
-        )
+        _recursive_update(result, klaxon_options.get("tool", {}).get("klaxon", {}))
 
     return result
 
