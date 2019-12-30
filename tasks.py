@@ -5,6 +5,7 @@ from invoke import task
 
 @task(aliases=["format"])
 def black(c):
+    """Format modules using black."""
     c.run("black klaxon/ tests/ tasks.py")
 
 
@@ -22,7 +23,7 @@ def mypy(c):
 
 @task
 def unit_tests(c):
-
+    """Run unit tests via pytest."""
     c.run("pytest tests/")
 
 
