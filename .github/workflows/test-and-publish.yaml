@@ -1,18 +1,19 @@
-name: Run Tests
+name: run tests
 
 on: [push, pull_request]
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
-    - name: Install Package
-      run: |
-        pip install -U pip
-        pip install poetry
-        poetry install
-    - name: Test
-      run: poetry run inv tests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: install package
+        run: |
+          pip install -U pip
+          pip install poetry
+          poetry install
+      - name: run test suite
+        run: poetry run inv tests
