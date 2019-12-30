@@ -34,6 +34,8 @@ jobs:
           python-version: 3.6
       - name: echo event
         run: echo ${{ github.event }}
+      - name: echo event name
+        run : echo ${{ github.event_name }}
       - name: install package
         run: |
           pip install -U pip
