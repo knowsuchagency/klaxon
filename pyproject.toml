@@ -17,7 +17,7 @@ keywords = [
 klaxon = 'klaxon:main'
 
 [tool.poetry.dependencies]
-python = "^3.5"
+python = "^3.6"
 notifiers = {version = "^1.0",optional = true}
 toml = {version = "^0.10.0"}
 
