@@ -32,6 +32,8 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.6
+      - name: echo event
+        run: echo ${{ github.event }}
       - name: install package
         run: |
           pip install -U pip
