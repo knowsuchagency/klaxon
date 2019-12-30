@@ -43,7 +43,7 @@ def publish(c, username=None, password=None):
 
     password = password or os.getenv("PYPI_PASSWORD")
 
-    *_, latest_release = json.loads(c.run("qypi releases klaxon").stdout)["klaxon"]
+    *_, latest_release = json.loads(c.run("qypi releases klaxon", hide=True).stdout)["klaxon"]
 
     latest_release_version = latest_release["version"]
 
