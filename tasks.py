@@ -53,6 +53,11 @@ def publish(c, username=None, password=None):
     local_version = toml.load("pyproject.toml")["tool"]["poetry"]["version"]
 
     if local_version == latest_release_version:
-        print("local and release version are identical")
+        print("local and release version are identical -- skipping publish")
     else:
-        c.run(f"poetry publish -u {username} -p '{password}' --build", pty=True)
+        print(f"publishing klaxon v{local_version}")
+        c.run(
+            f"poetry publish -u {username} -p '{password}' --build",
+            pty=True,
+            hide=True,
+        )

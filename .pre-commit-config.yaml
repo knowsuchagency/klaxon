@@ -17,13 +17,3 @@ repos:
     rev: stable
     hooks:
       - id: black
-
-  - repo: local
-    hooks:
-      - id: tests
-        name: unit tests
-        language: system
-        entry: inv unit-tests
-        pass_filenames: false
-        stages:
-          - push
