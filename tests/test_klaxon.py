@@ -23,7 +23,13 @@ def test_klaxon(title, subtitle, message):
     )
 
 
-def test_klaxon_invoke():
-    sp.run(["inv", "successful-task"])
-    time.sleep(3)
-    sp.run(["inv", "failed-task"])
+def test_klaxon_invoke_success():
+    sp.run(["inv", "succeed"])
+
+
+def test_klaxon_invoke_normal_failure():
+    sp.run(["inv", "fail-normally"])
+
+
+def test_klaxon_catastrophic_failure():
+    sp.run(["inv", "fail-badly"])

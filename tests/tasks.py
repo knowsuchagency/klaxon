@@ -4,11 +4,17 @@ from klaxon.invoke import klaxonify
 
 @task
 @klaxonify
-def successful_task(c):
+def succeed(c):
     ...
 
 
 @task
 @klaxonify
-def failed_task(c):
+def fail_normally(c):
     raise ValueError("derp")
+
+
+@task
+@klaxonify
+def fail_badly(c):
+    raise SystemExit("oof")
