@@ -1,4 +1,5 @@
 import subprocess as sp
+import time
 
 from klaxon import klaxon
 
@@ -20,3 +21,9 @@ def test_klaxon(title, subtitle, message):
         f'--sound ""',
         shell=True,
     )
+
+
+def test_klaxon_invoke():
+    sp.run(["inv", "successful-task"])
+    time.sleep(3)
+    sp.run(["inv", "failed-task"])
