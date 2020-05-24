@@ -38,16 +38,20 @@ def klaxon(
             applescript += f' sound name "{sound}"'
 
         process = sp.Popen(
-            ["osascript", "-"], stdin=sp.PIPE, stderr=sp.PIPE, stdout=sp.PIPE
+            ["osascript", "-"],
+            stdin=sp.PIPE,
+            stderr=sp.PIPE,
+            stdout=sp.PIPE,
+            universal_newlines=True,
         )
 
         logging.debug(applescript)
 
-        stdout, stderr = process.communicate(applescript.encode())
+        stdout, stderr = process.communicate(applescript)
 
         if process.returncode != 0:
-            logging.error(stdout.decode())
-            raise SystemExit(stdout.decode())
+            logging.error(stderr)
+            raise SystemExit(stdout)
 
     else:
         logging.warning("osascript notifications from klaxon only work on Mac OS")
